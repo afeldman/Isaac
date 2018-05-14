@@ -11,9 +11,5 @@ function parseFile(inputFile, callback){
 
 var parser = require('../lib/parser/parser');
 
-let error;
-
-parser.parseFile('test_data/ERRALL.LS',function (line) {
-    error = line;
-    console.log(line);});
+parseFile('test_data/ERRALL.LS',parser.parse)
 
