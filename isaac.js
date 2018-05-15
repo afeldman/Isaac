@@ -1,5 +1,5 @@
 "use strict";
-const {app, BrowserWindow, ipcMain} = require('electron');
+const {app, BrowserWindow} = require('electron');
 const path = require('path');
 const url = require('url');
 
@@ -8,7 +8,7 @@ let win;
 function createWindow () {
     // Create the browser window.
     let {width, height} = require('electron').screen.getPrimaryDisplay().size;
-    win = new BrowserWindow({width: width, height: height});
+    win = new BrowserWindow({width: width, height: height, frame: false});
     
     // and load the index.html of the app.
     win.loadURL(url.format({
@@ -47,31 +47,3 @@ app.on('activate', () => {
 	createWindow();
     }
 });
-
-ipcMain.on('openFile', (event, path) => { 
-    const {dialog} = require('electron'); 
-    const fs = require('fs') ;
-   dialog.showOpenDialog(function (fileNames) { 
-      
-      // fileNames is an array that contains all the selected 
-      if(fileNames === undefined) { 
-         console.log("No file selected"); 
-      
-      } else { 
-         readFile(fileNames[0]); 
-      } 
-   });
-   
-   function readFile(filepath) { 
-      fs.readFile(filepath, 'utf-8', (err, data) => { 
-         
-         if(err){ 
-            alert("An error ocurred reading the file :" + err.message) 
-            return 
-         } 
-         
-         // handle the file content 
-         event.sender.send('fileData', data) 
-      });
-   } 
-}); 

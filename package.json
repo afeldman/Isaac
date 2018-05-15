@@ -10,9 +10,9 @@
   },
   "license": "MIT",
   "dependencies": {
+    "dotenv": "^5.0.1",
     "electron": "^1.8.4",
-    "vis": "^4.21.0",
-    "dotenv": "^5.0.1"
+    "vis": "^4.21.0"
   },
   "devDependencies": {
     "ejs": "^2.6.1",

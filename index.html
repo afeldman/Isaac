@@ -6,14 +6,13 @@
   </head>
   <body>
     <script type = "text/javascript"> 
-      const {ipcRenderer} = require('electron') 
-      ipcRenderer.send('openFile', () => { 
-      console.log("Event sent."); 
-      }) 
-      
-      ipcRenderer.on('fileData', (event, data) => { 
-      document.write(data) 
-      }) 
-    </script> 
+    </script>
+
+    
+     <div style="text-align:center;">
+       <input type="text" placeholder="Please select a file" id="actual-file" disabled="disabled"/>
+       <input type="button" value="Choose a file" id="select-file"/>
+     </div>
+	    
   </body>
 </html>
