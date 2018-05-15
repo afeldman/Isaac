@@ -8,7 +8,10 @@ let win;
 function createWindow () {
     // Create the browser window.
     let {width, height} = require('electron').screen.getPrimaryDisplay().size;
-    win = new BrowserWindow({width: width, height: height, frame: false});
+    win = new BrowserWindow({width: (width-100),
+			     height: (height-100)});
+
+    win.webContents.openDevTools();
     
     // and load the index.html of the app.
     win.loadURL(url.format({
