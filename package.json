@@ -14,7 +14,10 @@
     "vis": "^4.21.0",
     "dotenv": "^5.0.1"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "ejs": "^2.6.1",
+    "express": "^4.16.3"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/afeldman/js-isaac.git"

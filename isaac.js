@@ -1,27 +1,21 @@
 'use strict';
 
-var Isaac = require('./lib/isaac')
-var http = require('http');
+var express = require('express');
+var app     = express();
 
+//app.engine('ejs', require('ejs').renderFile );
+app.set('views', __dirname + '/views');
+app.set('view engine', 'ejs');
 
-//get file
-var file = process.argv.slice(2);
-//parse file
-var log = Isaac.Log.fromPath(file[0])
+var parser = require('./lib/parser/parser');
+var par = new parser('test_data/ERRALL.LS');
+var data = par.getDataSet();
 
-var server = http.createServer(function (request, response) {
-    response.writeHead(200, { "Content-Type": "text/html" });
-    response.write("<!DOCTYPE \"html\">");
-    response.write("<html>");
-    response.write("<head>");
-    response.write("<title>Isaac</title>");
-    response.write("</head>");
-    response.write("<body>");
-    response.write("Hello World!");
-    response.write("</body>");
-    response.write("</html>");
-    response.end();
+app.get('/', function(req, res){
+    res.render('index', {data: data});    
 });
 
-server.listen(8080);
-console.log("Server is listening");
+// Start the server
+var server = app.listen(3000, function() {
+    console.log('Listening on port %d', server.address().port);
+});
