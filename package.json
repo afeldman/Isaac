@@ -1,12 +1,12 @@
 {
   "name": "isaac",
-  "version": "0.1.0",
+  "version": "0.5.0",
   "description": "A logger for the fanuc error all",
   "main": "isaac.js",
   "author": "Anton Feldmann <anton.feldmann@gmail.com>",
   "scripts": {
     "test": "jasmine-node spec",
-    "start": "node isaac.js"
+    "start": "electron ."
   },
   "license": "MIT",
   "dependencies": {
