@@ -1,31 +1,38 @@
 {
-  "name": "isaac",
-  "version": "0.3.0",
-  "description": "A logger for the fanuc error all",
-  "main": "isaac.js",
-  "author": "Anton Feldmann <anton.feldmann@gmail.com>",
-  "scripts": {
-    "test": "jasmine-node spec",
-    "start": "electron ."
-  },
-  "license": "MIT",
-  "dependencies": {
-    "dotenv": "^5.0.1",
-    "electron": "^1.8.4",
-    "vis": "^4.21.0"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/afeldman/js-isaac.git"
-  },
-  "bugs": {
-    "url": "https://github.com/afeldman/js-isaac/issues"
-  },
-  "homepage": "https://github.com/afeldman/js-isaac#readme",
-  "directories": {
-    "lib": "lib"
-  },
-  "devDependencies": {
-    "jasmine-node": "^1.14.5"
-  }
+   "name": "isaac",
+   "version": "0.3.0",
+   "description": "A logger for the fanuc error all",
+   "main": "src/isaac.js",
+   "author": "Anton Feldmann <anton.feldmann@gmail.com>",
+   "publishConfig": {
+      "access": "restricted"
+   },
+   "scripts": {
+      "test": "jasmine-node spec",
+      "start": "electron .",
+      "lint": "jshint **/*.js",
+      "prepublish": "npm run lint && npm run test && npm run build"
+   },
+   "license": "MIT",
+   "dependencies": {
+      "dotenv": ">=5.0.1",
+      "electron": ">=1.8.4",
+      "jquery": "^3.3.1",
+      "vis": ">=4.21.0"
+   },
+   "repository": {
+      "type": "git",
+      "url": "git+https://github.com/afeldman/js-isaac.git"
+   },
+   "bugs": {
+      "url": "https://github.com/afeldman/js-isaac/issues"
+   },
+   "homepage": "https://github.com/afeldman/js-isaac#readme",
+   "directories": {
+      "lib": "lib"
+   },
+   "devDependencies": {
+      "jasmine-node": "^1.14.5",
+      "jshint": "^2.9.5"
+   }
 }
