@@ -13,7 +13,10 @@
 				 height: height,
 				 resizeable: true,
 				 frame: true,
-				 transparent: false});
+				 transparent: false,
+				 show: false,
+				 minWidth: 300, 
+				 minHeight: 600});
 
 	win.webContents.openDevTools();
 	
@@ -32,6 +35,10 @@
 	    // in an array if your app supports multi windows, this is the time
 	    // when you should delete the corresponding element.
 	    win = null;
+	});
+
+	win.once('ready-to-show', () => {
+	    win.show();
 	});
     }
 

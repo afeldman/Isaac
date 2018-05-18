@@ -1,11 +1,9 @@
-"use strict"
-
 var moment = require('moment');
 
 class Parser{
     constructor(file){
 	this.file = file;
-	this.data_set = new Array();
+	this.data_set = [];
 	this.parseFile();
     }
 
@@ -36,7 +34,7 @@ class Parser{
 	
 	if ( data != null){
 
-	    var _id = Number(data[0])
+	    var _id = Number(data[0]);
 
 	    if ( (_id != 0) && !isNaN(_id)){
 
