@@ -1,0 +1,12 @@
+{
+    "ftp": true,
+    "robots": [
+	{"name": "234",
+	 "passwd": "",
+	 "user": "",
+	 "ip": "",
+	 "port": 21,
+	 "cron": {"enable": true,
+		  "pattern": "* * */2 * * 1-5"}
+	}]
+}
