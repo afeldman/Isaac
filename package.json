@@ -14,13 +14,16 @@
    },
    "license": "MIT",
    "dependencies": {
+      "config": "^1.30.0",
       "dotenv": "^5.0.1",
       "electron": ">=1.8.4",
-      "jquery": "^3.3.1",
-      "vis": ">=4.21.0",
-      "config": "^1.30.0",
+      "ftp": "^0.3.10",
       "jasmine-node": "^1.14.5",
-      "jshint": "^2.9.5"
+      "jquery": "^3.3.1",
+      "jshint": "^2.9.5",
+      "node-cron": "^1.2.1",
+      "tempfile": "^2.0.0",
+      "vis": ">=4.21.0"
    },
    "repository": {
       "type": "git",
@@ -29,8 +32,5 @@
    "bugs": {
       "url": "https://github.com/afeldman/js-isaac/issues"
    },
-   "homepage": "https://github.com/afeldman/js-isaac#readme",
-   "directories": {
-      "lib": "lib"
-   }
+   "homepage": "https://github.com/afeldman/js-isaac#readme"
 }

@@ -1,10 +1,45 @@
+body, html, input {
+    font-family: arial, sans-serif;
+    font-size: 12px;
+}
+
+.vis-item.green {
+    background-color: greenyellow;
+    border-color: green;
+}
+
+/* create a custom sized dot at the bottom of the red item */
+.vis-item.red {
+    background-color: red;
+    border-color: darkred;
+    color: white;
+    font-family: monospace;
+    box-shadow: 0 0 10px gray;
+}
+
+.vis-item.orange {
+    background-color: gold;
+    border-color: orange;
+}
+
+.vis-item.magenta {
+    background-color: magenta;
+    border-color: purple;
+    color: white;
+}
+
+/* our custom classes overrule the styles for selected events,
+      so lets define a new style for the selected events */
+.vis-item.vis-selected {
+    background-color: white;
+    border-color: black;
+    color: black;
+    box-shadow: 0 0 10px gray;
+}
+
 .vis-center>.vis-content {
     overflow-x: hidden;
     overflow-y: scroll;
     height: 100%;
 }
-.vis-left>.vis-content {
-    height: 100%;
-    overflow-x: hidden;
-    overflow-y: scroll;
-}
+

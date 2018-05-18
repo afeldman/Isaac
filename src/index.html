@@ -2,42 +2,40 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <meta charset="utf-8">
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
     <title>TimeLine of FANUC Robot Alarm History</title>
     
-    <link rel="stylesheet" type="text/css" href="http://visjs.org/dist/vis.min.css">
-    <script type="text/javascript" src="http://visjs.org//dist/vis.min.js"></script>
-
+    <link rel="stylesheet" type="text/css" href="../node_modules/vis/dist/vis.min.css">
     <link href="./css/isaac.css" rel="stylesheet" type="text/css" />
     
+    <script type="text/javascript" src="../node_modules/vis/dist/vis.min.js"></script>
+    <script type="text/javascript" src="./js/vis_coloring.js"></script>    
     <script type = "text/javascript">
       
       var data  = null;
       
       var $ = require("jquery");
-      var parser = require('./js/parser/parser');
+      let parser = require('./js/parser/parser');
+      let remote = require('electron').remote; 
+      let dialog = remote.dialog;
+      let fs = require('fs');
       
       function openFileDialog(){
-	  var remote = require('electron').remote; 
-	  var dialog = remote.dialog;
-	  var fs = require('fs');
 	  
-	  document.getElementById('select-file').addEventListener('click',function(){
+	  document.getElementById('select-file').addEventListener('click', function(){
 	      
 	      dialog.showOpenDialog(function (fileNames) {
 		  if(fileNames === undefined){
 		      console.log("No file selected");
 		  }else{
-		      console.log( fileNames[0] );
-		      
 		      var par = new parser(fileNames[0]);
-		      var items = new vis.DataSet(par.getDataSet());
-		      
-		      var container = document.getElementById('visualization'); 
-		      var options = {height: "500px"};
+		      var items = new vis.DataSet(setcolor(par.getDataSet()));
+		      $("#visualization").html("");
+		      var container = document.getElementById('visualization');		      
+		      var options = {height: "500px",
+				     editable: true};
 		      
 		      // Create the timeline!
 		      var timeline = new vis.Timeline(container, items, options);
@@ -46,22 +44,7 @@
 	  },false);
       }
       
-      $(document).ready(function(){
-	  $('.vis-center>.vis-content').on('scroll', function () {
-	      $('.vis-left>.vis-content').scrollTop($(this).scrollTop());
-	  });
-	  $('.vis-left>.vis-content').on('scroll', function () {
-	      $('.vis-center>.vis-content').scrollTop($(this).scrollTop());
-	  }); 
-      })
-      
     </script>
-    <style>
-      body, html {
-	  font-family: arial, sans-serif;
-	  font-size: 8px;
-      }
-    </style>
   </head>
   <body>
     <div id="visualization"></div>
