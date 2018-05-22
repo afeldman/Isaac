@@ -21,36 +21,61 @@
       let remote = require('electron').remote; 
       let dialog = remote.dialog;
       let fs = require('fs');
+
+      function createTimeline(filename){
+         var par = new parser(filename);
+         var items = new vis.DataSet(setcolor(par.getDataSet()));
+
+         $("#visualization").html("");
+
+         var container = document.getElementById('visualization');		      
+         var options = {height: "500px",
+                          editable: true};
+      
+      // Create the timeline!
+      var timeline = new vis.Timeline(container, items, options);
+
+      timeline.on('select', function (properties) {
+         console.log(properties);
+      });
+
+      timeline.on('doubleClick', function(properties){
+       console.log(properties);
+      });
+      
+       items.on('*', function (event, properties) {
+              console.log('event=' + JSON.stringify(event) + ', ' +
+                           'properties=' + JSON.stringify(properties));
+       });
+
+      }
       
       function openFileDialog(){
-	  
-	  document.getElementById('select-file').addEventListener('click', function(){
-	      
-	      dialog.showOpenDialog(function (fileNames) {
-		  if(fileNames === undefined){
-		      console.log("No file selected");
-		  }else{
-		      var par = new parser(fileNames[0]);
-		      var items = new vis.DataSet(setcolor(par.getDataSet()));
-		      $("#visualization").html("");
-		      var container = document.getElementById('visualization');		      
-		      var options = {height: "500px",
-				     editable: true};
-		      
-		      // Create the timeline!
-		      var timeline = new vis.Timeline(container, items, options);
-		  }
-	      }); 
-	  },false);
+      
+      document.getElementById('select-file').addEventListener('click', function(){
+      
+      dialog.showOpenDialog(function (fileNames) {
+      if(fileNames === undefined){
+      console.log("No file selected");
+      }else{
+      createTimeLine(fileNames[0]);
+      }
+      }); 
+      },false);
       }
       
     </script>
   </head>
   <body>
-    <div id="visualization"></div>
-    <script>
-      
-    </script>
+
+    <table>
+      <tr>
+	<td>
+	  <div id="visualization"></div>
+	</td>
+      </tr>
+    </table>
+    
     <div style="text-align:center;">
       <input type="button" value="Open File" id="select-file" onClick="openFileDialog();"/>
     </div> 
