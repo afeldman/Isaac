@@ -11,40 +11,12 @@
     <link href="./css/isaac.css" rel="stylesheet" type="text/css" />
     
     <script type="text/javascript" src="../node_modules/vis/dist/vis.min.js"></script>
-    <script type="text/javascript" src="./js/vis_coloring.js"></script>    
+    <script type="text/javascript" src="./js/vis_coloring.js"></script>
+    <script type="text/javascript" src="./js/timeline.js"></script>     
     <script type="text/javascript">
-      
-      var data  = null;
-      
-      var $ = require("jquery");
-      let parser = require('./js/parser/parser');
+       
       let remote = require('electron').remote; 
       let dialog = remote.dialog;
-      let fs = require('fs');
-      
-      function createTimeLine(filename){
-	  var par = new parser(filename);
-	  var items = new vis.DataSet(setcolor(par.getDataSet()));
-	  
-	  $("#visualization").html("");
-	  
-	  var container = document.getElementById('visualization');		      
-	  var options = {height: "500px",
-			 editable: true};
-	  
-	  // Create the timeline!
-	  var timeline = new vis.Timeline(container, items, options);
-	  	  
-	  timeline.on('doubleClick', function(properties){
-	      console.log(properties);
-	  });
-	  
-	  items.on('*', function (event, properties) {
-	      console.log('event=' + JSON.stringify(event) + ', ' +
-			  'properties=' + JSON.stringify(properties));
-	  });
-	  
-      }
       
       function openFileDialog(){
 	  
