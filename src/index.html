@@ -12,7 +12,7 @@
     
     <script type="text/javascript" src="../node_modules/vis/dist/vis.min.js"></script>
     <script type="text/javascript" src="./js/vis_coloring.js"></script>    
-    <script type = "text/javascript">
+    <script type="text/javascript">
       
       var data  = null;
       
@@ -21,56 +21,52 @@
       let remote = require('electron').remote; 
       let dialog = remote.dialog;
       let fs = require('fs');
-
-      function createTimeline(filename){
-         var par = new parser(filename);
-         var items = new vis.DataSet(setcolor(par.getDataSet()));
-
-         $("#visualization").html("");
-
-         var container = document.getElementById('visualization');		      
-         var options = {height: "500px",
-                          editable: true};
       
-      // Create the timeline!
-      var timeline = new vis.Timeline(container, items, options);
-
-      timeline.on('select', function (properties) {
-         console.log(properties);
-      });
-
-      timeline.on('doubleClick', function(properties){
-       console.log(properties);
-      });
-      
-       items.on('*', function (event, properties) {
-              console.log('event=' + JSON.stringify(event) + ', ' +
-                           'properties=' + JSON.stringify(properties));
-       });
-
+      function createTimeLine(filename){
+	  var par = new parser(filename);
+	  var items = new vis.DataSet(setcolor(par.getDataSet()));
+	  
+	  $("#visualization").html("");
+	  
+	  var container = document.getElementById('visualization');		      
+	  var options = {height: "500px",
+			 editable: true};
+	  
+	  // Create the timeline!
+	  var timeline = new vis.Timeline(container, items, options);
+	  	  
+	  timeline.on('doubleClick', function(properties){
+	      console.log(properties);
+	  });
+	  
+	  items.on('*', function (event, properties) {
+	      console.log('event=' + JSON.stringify(event) + ', ' +
+			  'properties=' + JSON.stringify(properties));
+	  });
+	  
       }
       
       function openFileDialog(){
-      
-      document.getElementById('select-file').addEventListener('click', function(){
-      
-      dialog.showOpenDialog(function (fileNames) {
-      if(fileNames === undefined){
-      console.log("No file selected");
-      }else{
-      createTimeLine(fileNames[0]);
-      }
-      }); 
-      },false);
+	  
+	  document.getElementById('select-file').addEventListener('click', function(){
+	      
+	      dialog.showOpenDialog(function (fileNames) {
+		  if(fileNames === undefined){
+		      console.log("No file selected");
+		  }else{
+		      createTimeLine(fileNames[0]);
+		  }
+	      }); 
+	  },false);
       }
       
     </script>
   </head>
   <body>
-
-    <table>
-      <tr>
-	<td>
+    
+    <table style="width: 100%;">
+      <tr style="width: 100%;">
+	<td style="width: 100%;">
 	  <div id="visualization"></div>
 	</td>
       </tr>
