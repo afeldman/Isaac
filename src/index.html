@@ -4,38 +4,18 @@
     <meta charset="UTF-8">
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    
+
     <title>TimeLine of FANUC Robot Alarm History</title>
-    
+
     <link rel="stylesheet" type="text/css" href="../node_modules/vis/dist/vis.min.css">
     <link href="./css/isaac.css" rel="stylesheet" type="text/css" />
-    
+
     <script type="text/javascript" src="../node_modules/vis/dist/vis.min.js"></script>
     <script type="text/javascript" src="./js/vis_coloring.js"></script>
-    <script type="text/javascript" src="./js/timeline.js"></script>     
-    <script type="text/javascript">
-       
-      let remote = require('electron').remote; 
-      let dialog = remote.dialog;
-      
-      function openFileDialog(){
-	  
-	  document.getElementById('select-file').addEventListener('click', function(){
-	      
-	      dialog.showOpenDialog(function (fileNames) {
-		  if(fileNames === undefined){
-		      console.log("No file selected");
-		  }else{
-		      createTimeLine(fileNames[0]);
-		  }
-	      }); 
-	  },false);
-      }
-      
-    </script>
+    <script type="text/javascript" src="./js/timeline.js"></script>
   </head>
   <body>
-    
+
     <table style="width: 100%;">
       <tr>
 	<td>
@@ -51,10 +31,30 @@
 	</td>
       </tr>
     </table>
-    
+
     <div style="text-align:center;">
+      <script type="text/javascript">
+
+        let remote = require('electron').remote;
+        let dialog = remote.dialog;
+
+        function openFileDialog(){
+
+	document.getElementById('select-file').addEventListener('click', function(){
+
+	   dialog.showOpenDialog(function (fileNames) {
+	      if(fileNames === undefined){
+	         console.log("No file selected");
+	      }else{
+	         createTimeLine(fileNames[0]);
+	      }
+	   });
+	 },false);
+        }
+
+      </script>
       <input type="button" value="Open File" id="select-file" onClick="openFileDialog();"/>
-    </div> 
-    
+    </div>
+
   </body>
 </html>
