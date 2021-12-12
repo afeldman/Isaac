@@ -1,0 +1,29 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    backport (1.2.0)
+    date (3.2.2)
+    io-wait (0.2.1)
+    net-ftp (0.1.3)
+      net-protocol
+      time
+    net-protocol (0.1.2)
+      io-wait
+      timeout
+    readapt (1.4.3)
+      backport (~> 1.2)
+      thor (~> 1.0)
+    thor (1.1.0)
+    time (0.2.0)
+      date
+    timeout (0.2.0)
+
+PLATFORMS
+  x86_64-linux
+
+DEPENDENCIES
+  net-ftp
+  readapt
+
+BUNDLED WITH
+   2.2.33
