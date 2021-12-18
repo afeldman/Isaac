@@ -24,6 +24,7 @@ PLATFORMS
 DEPENDENCIES
   net-ftp
   readapt
+  thor
 
 BUNDLED WITH
    2.2.33

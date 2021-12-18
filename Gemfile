@@ -12,3 +12,4 @@ group :development do
 end
 
 gem 'net-ftp'
+gem 'thor'
