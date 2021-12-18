@@ -3,22 +3,30 @@ include RethinkDB::Shortcuts
 
 class DB
 
-    def initialize (host="127.0.0.1", port="28015", db="fanuc_robot")
-        r.connect(:host=>"localhost", :port=>28015).repl
-        begin
+    def initialize(database_config)
+
+        db = database_config["db"]
+
+        r.connect(:host=>database_config["host"], 
+                  :port=>database_config["port"],
+                  :user=>database_config["user"],
+                  :passwd=>database_config["passwd"]).repl
+       
+        if r.db_list().contains(db).run then
             @db = r.db(db)
-        rescue RethinkDB::ReqlOpFailedError
+        else
             @db = r.db_create(db)
         end
+       
     end
 
     def robot(robot_name)
-        begin
+        if @db.table_list().contains(robot_name).run then
             table = @db.table(robot_name)
-        rescue => exception
+        else
             table = @db.table_create(robot_name)
         end
-        table
+        return table
     end
 
 end
