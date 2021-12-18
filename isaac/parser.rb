@@ -35,8 +35,6 @@ class Err_Parser
                 signal = line_value[4].strip
                 last_signal = signal.reverse[0, 8].reverse.to_i(2)
 
-
-
                 @db.robot(table_name).insert({
                     "no"=>counter, "id"=>date.to_time.to_i, "date"=>date.iso8601, "reason" => reason, "signal"=>signal, "signal_int" => last_signal
                 }).run

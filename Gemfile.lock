@@ -1,19 +1,52 @@
+GIT
+  remote: https://github.com/sinatra/sinatra
+  revision: e69b6b9dee7165d3a583fc8a6af10ceee1ea687d
+  specs:
+    rack-protection (2.1.0)
+      rack
+    sinatra (2.1.0)
+      mustermann (~> 1.0)
+      rack (~> 2.2)
+      rack-protection (= 2.1.0)
+      tilt (~> 2.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
     backport (1.2.0)
     date (3.2.2)
+    dotenv (2.7.6)
+    haml (5.2.2)
+      temple (>= 0.8.0)
+      tilt
     io-wait (0.2.1)
+    multi_json (1.15.0)
+    mustermann (1.1.1)
+      ruby2_keywords (~> 0.0.1)
     net-ftp (0.1.3)
       net-protocol
       time
     net-protocol (0.1.2)
       io-wait
       timeout
+    nio4r (2.5.8)
+    puma (5.5.2)
+      nio4r (~> 2.0)
+    rack (2.2.3)
     readapt (1.4.3)
       backport (~> 1.2)
       thor (~> 1.0)
+    rethinkdb (2.4.0.0)
+    ruby2_keywords (0.0.5)
+    sinatra-contrib (2.1.0)
+      multi_json
+      mustermann (~> 1.0)
+      rack-protection (= 2.1.0)
+      sinatra (= 2.1.0)
+      tilt (~> 2.0)
+    temple (0.8.2)
     thor (1.1.0)
+    tilt (2.0.10)
     time (0.2.0)
       date
     timeout (0.2.0)
@@ -22,8 +55,14 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
+  dotenv
+  haml
   net-ftp
+  puma
   readapt
+  rethinkdb
+  sinatra!
+  sinatra-contrib
   thor
 
 BUNDLED WITH

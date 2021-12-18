@@ -11,5 +11,13 @@ group :development do
   # gems...
 end
 
+source 'https://rubygems.org'
+gem 'sinatra', :github => 'sinatra/sinatra'
+gem 'sinatra-contrib'
+
+gem 'rethinkdb'
+gem 'puma'
+gem 'haml' 
+gem 'dotenv'
 gem 'net-ftp'
 gem 'thor'
