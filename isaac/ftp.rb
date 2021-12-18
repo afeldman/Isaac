@@ -1,16 +1,16 @@
-require 'tempfile'
 require 'net/ftp'
-
+require 'tmpdir'
 require_relative "./parser"
 
 def work_robot_db (robot_config_data, db)
     
-    tmp_file_name = Tempfile.new(robot_config_data["name"])
+    tmp_file_name = File.join(Dir::tmpdir, robot_config_data["name"])
 
     Net::FTP.open(robot_config_data.ip) do |ftp|
         ftp.login(user=robot_config_data["user"], 
                   passwd=robot_config_data["passwd"])
-
+        ftp.passive = true
+        #ftp.chdir('MD')
         ftp.getbinaryfile("ERRALL.LS", tmp_file_name, 1024)
     end
 
@@ -18,8 +18,7 @@ def work_robot_db (robot_config_data, db)
                     robot_config_data["name"], 
                     db)
 
-    tmp_file_name.close
-    tmp_file_name.unlink
+    File.delete(tmp_file_name) if File.exists?(tmp_file_name)
 
 end
 
