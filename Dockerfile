@@ -1,7 +1,14 @@
 FROM ruby:3.0.2
 
-COPY Gemfile .
 RUN apt-get update
-RUN bundle install 
 
-EXPOSE 21
+WORKDIR /robor_data/
+
+COPY red_service/* ./
+RUN bundle install
+
+EXPOSE 21 28015
+
+VOLUME [ "/data" ]
+
+CMD ["ruby", "/robor_data/pull_data", "ftp", "/data/fanuc.config"]
