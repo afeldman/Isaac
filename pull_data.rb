@@ -2,9 +2,9 @@
 
 require 'thor'
 require 'yaml'
-require_relative './isaac/database'
-require_relative './isaac/parser'
-require_relative './isaac/ftp'
+require_relative './lib/isaac/database'
+require_relative './lib/isaac/parser'
+require_relative './lib/isaac/ftp'
 
 
 class RoboErrorDataBase < Thor

@@ -5,7 +5,7 @@ require "sinatra/namespace"
 require 'dotenv/load'
 require 'json'
 
-require_relative './isaac/database'
+require_relative './lib/isaac/database'
 
 port = ENV["DBPORT"]
 host = ENV["DBHOST"]
